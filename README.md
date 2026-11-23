@@ -54,3 +54,10 @@ rather than an average or a nearest named color.
 
 Every function that takes a color accepts either a string in the supported
 syntax or an already-parsed `{r, g, b}` object.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
